@@ -1,7 +1,8 @@
-FROM golang.1.20-alpine AS builder
+FROM golang:1.27 AS builder
 
 WORKDIR /go/src/app
 COPY . .
+
 RUN make build
 
 FROM scratch
@@ -9,3 +10,4 @@ WORKDIR /
 COPY --from=builder /go/src/app/kbot .
 COPY --from=alpine:latest /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 ENTRYPOINT ["./kbot"]
+
