@@ -11,3 +11,6 @@ test:
 
 build:
 	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${shell dpkg --print-architecture} go build -v -o kbot -ldflags "-X="github.com/skrypnykov/kbot/cmd.appVersion=${VERSION}
+
+clean:
+	rm -f kbot
