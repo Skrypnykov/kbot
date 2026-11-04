@@ -1,7 +1,10 @@
-FROM golang.1.20-alpine AS builder
+FROM golang:1.27-alpine AS builder
 
 WORKDIR /go/src/app
+
+RUN apk add --no-cache make git dpkg
 COPY . .
+RUN GOOS=linux GOARCH=amd64 make build
 RUN make build
 
 FROM scratch
