@@ -1,18 +1,10 @@
-# Default values for helm.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-# This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 replicaCount: 1
 
-# This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
-  repository: oskrypnykov/kbot
-  # This sets the pull policy for images.
+  repository: oskrypnykov/kbot.git
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.0.1-24653ab-arm64"
-
+  tag: "v0.0.1-24653ab"
+  arch: amd64
 
 secret:
   name: kbot
