@@ -27,3 +27,4 @@ push:
 
 clean:
 	rm -f kbot
+
