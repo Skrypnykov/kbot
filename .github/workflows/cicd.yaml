@@ -4,12 +4,6 @@ on:
   push:
     branches:
       - develop
-
-permissions:
-  contents: write
-  id-token: write
-  packages: write
-
 env:
   TARGETOS: linux
   TARGETARCH: amd64
