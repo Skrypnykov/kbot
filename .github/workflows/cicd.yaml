@@ -41,7 +41,7 @@ jobs:
       - name: Build&Push
         env:
           APP: "kbot"
-          REGISTRY: "ghcr.io/skrypnykov" 
+          REGISTRY: "ghcr.io/skrypnykov"
         run: make image push
 
   cd:
