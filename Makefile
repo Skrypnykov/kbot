@@ -1,5 +1,4 @@
-#.PHONY: format lint test get build image push clean
-
+.PHONY: format lint test get build image push clean
 APP=$(shell basename $(shell git remote get-url origin) .git)
 REGISTRY?=oskrypnykov
 VERSION?=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
