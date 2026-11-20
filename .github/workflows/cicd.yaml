@@ -1,14 +1,25 @@
 name: KBOT-CICD
 
-on: push
+on:
+  push:
+    branches:
+      - develop
 
 permissions:
   contents: write
+
+env:
+  TARGETOS: linux
+  TARGETARCH: amd64
 
 jobs:
   ci:
     name: CI
     runs-on: ubuntu-latest
+
+  permissions:
+    contents: 'read'
+    id-token: 'write'
 
     steps:
       - name: Checkout
@@ -18,15 +29,17 @@ jobs:
 
       - name: Run test
         run: make test
-      - name: Login to Docker Hub
+
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v4
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build&Push
         env:
           APP: "kbot"
-          REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
         run: make image push
 
   cd:
@@ -43,7 +56,7 @@ jobs:
 
       - uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.image.tag=strenv(VERSION)' helm/values.yaml
+          cmd: yq -i '.image.tag=strenv(VERSION) | .image.os=strenv(TARGETOS) | .image.arch=strenv(TARGETARCH)' helm/values.yaml
 
       - run: |
           git config user.name github-actions
