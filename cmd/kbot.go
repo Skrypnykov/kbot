@@ -49,15 +49,15 @@ to quickly create a Cobra application.`,
 
 			log.Print(m.Message().Payload, m.Text())
 			payload := m.Message().Payload
-
+			cleanVersion := strings.Split(appVersion, "-")[0]
 
 			switch payload {
 			case "hello":
-			        err = m.Send(fmt.Sprintf("Hello I'm Kbot %s!", appVersion))
-			case "version":
-			        err = m.Send(fmt.Sprintf("Version: %s", appVersion))
-			default:
-			        err = m.Send(fmt.Sprintf("Hello I'm Kbot %s!", appVersion))
+    				err = m.Send(fmt.Sprintf("Hello I'm Kbot %s!", cleanVersion))
+			    case "version":
+				err = m.Send(fmt.Sprintf("Version: %s", cleanVersion))
+			    default:
+				err = m.Send(fmt.Sprintf("Hello I'm Kbot %s!", cleanVersion))
 			}
 
 			return err
