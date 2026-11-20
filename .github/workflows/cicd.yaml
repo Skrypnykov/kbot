@@ -2,9 +2,6 @@ name: KBOT-CICD
 
 on: push
 
-permissions:
-  contents: write
-
 jobs:
   ci:
     name: CI
