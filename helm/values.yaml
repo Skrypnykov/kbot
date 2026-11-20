@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: oskrypnykov/kbot.git
+  repository: oskrypnykov/kbot
   pullPolicy: IfNotPresent
   tag: "v1.1.3-4449582"
   arch: amd64
