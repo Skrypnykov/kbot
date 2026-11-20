@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: ghcr.io/skrypnykov/kbot
   pullPolicy: IfNotPresent
-  tag: "v1.1.3-e30b059"
+  tag: "v1.1.3-151f55a"
   arch: amd64
   os: linux
 secret:
