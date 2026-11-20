@@ -1,6 +1,6 @@
 APP=$(shell basename $(shell git remote get-url origin) .git)
 REGISTRY?=oskrypnykov
-VERSION?=$(shell git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+VERSION?=$(shell git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")-$(shell git rev-parse --short HEAD)
 TARGETOS?=linux
 TARGETARCH?=amd64
 
